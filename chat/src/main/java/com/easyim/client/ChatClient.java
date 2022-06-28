@@ -15,10 +15,7 @@ import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.handler.timeout.IdleStateHandler;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -26,6 +23,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class ChatClient {
 
     public static void main(String[] args) {
+
+
 
         NioEventLoopGroup group = new NioEventLoopGroup();
         LoggingHandler LOGGING_HANDLER = new LoggingHandler(LogLevel.DEBUG);
@@ -50,7 +49,7 @@ public class ChatClient {
                     ch.pipeline().addLast(new ChannelDuplexHandler() {
                         // 用来触发特殊事件
                         @Override
-                        public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception{
+                        public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
                             IdleStateEvent event = (IdleStateEvent) evt;
                             // 触发了写空闲事件
                             if (event.state() == IdleState.WRITER_IDLE) {
@@ -72,6 +71,13 @@ public class ChatClient {
                                 }
                                 // 唤醒 system in 线程
                                 WAIT_FOR_LOGIN.countDown();
+                            } else if (msg instanceof ChatResponseMessage) {
+                                ChatResponseMessage response = (ChatResponseMessage) msg;
+                                System.out.println(response.getFrom()+":"+response.getContent());
+                            } else if (msg instanceof GroupChatResponseMessage) {
+                                GroupChatResponseMessage response = (GroupChatResponseMessage) msg;
+                                System.out.println(response.getFrom()+":"+response.getContent());
+
                             }
                         }
 
@@ -82,12 +88,12 @@ public class ChatClient {
                             new Thread(() -> {
                                 System.out.println("请输入用户名:");
                                 String username = scanner.nextLine();
-                                if(EXIT.get()){
+                                if (EXIT.get()) {
                                     return;
                                 }
                                 System.out.println("请输入密码:");
                                 String password = scanner.nextLine();
-                                if(EXIT.get()){
+                                if (EXIT.get()) {
                                     return;
                                 }
                                 // 构造消息对象
@@ -122,11 +128,11 @@ public class ChatClient {
                                     } catch (Exception e) {
                                         break;
                                     }
-                                    if(EXIT.get()){
+                                    if (EXIT.get()) {
                                         return;
                                     }
                                     String[] s = command.split(" ");
-                                    switch (s[0]){
+                                    switch (s[0]) {
                                         case "send":
                                             ctx.writeAndFlush(new ChatRequestMessage(username, s[1], s[2]));
                                             break;
@@ -179,4 +185,5 @@ public class ChatClient {
             group.shutdownGracefully();
         }
     }
+
 }

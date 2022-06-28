@@ -28,7 +28,6 @@ public class NettyServer {
 
     @PostConstruct
     public void start() {
-
         NioEventLoopGroup boss = new NioEventLoopGroup();
         NioEventLoopGroup worker = new NioEventLoopGroup();
         LoggingHandler LOGGING_HANDLER = new LoggingHandler(LogLevel.DEBUG);
@@ -62,8 +61,8 @@ public class NettyServer {
                             IdleStateEvent event = (IdleStateEvent) evt;
                             // 触发了读空闲事件
                             if (event.state() == IdleState.READER_IDLE) {
-//                                log.debug("已经 5s 没有读到数据了");
-//                                ctx.channel().close();
+                                log.debug("已经 5s 没有读到数据了");
+                                ctx.channel().close();
                             }
                         }
                     });
