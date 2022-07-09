@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.easyim</groupId>
-    <artifactId>easy-im</artifactId>
+    <groupId>com.fakechat.practice</groupId>
+    <artifactId>fakechat</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
@@ -18,8 +18,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.3.0.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-        <!--       cloudalibaba 2.2.x for Spring Boot 2.2.x-->
+        <relativePath/>
     </parent>
 
     <properties>
