@@ -62,6 +62,14 @@ public class MessageBox<T> extends Message {
         return new MessageBox<>(message, BOOLEAN_OK, data);
     }
 
+    public static <E> MessageBox<E> okMsg() {
+        return new MessageBox<>(MESSAGE_OK, BOOLEAN_OK, null);
+    }
+
+    public static <E> MessageBox<E> okMsg(String message) {
+        return new MessageBox<>(message, BOOLEAN_OK, null);
+    }
+
     /**
      * @return - { "status":0,"message":"失败","ok":false,"data":xxx}
      */
@@ -75,6 +83,10 @@ public class MessageBox<T> extends Message {
 
     public static <E> MessageBox<E> fail(String message, E data) {
         return new MessageBox<>(message, BOOLEAN_FAIL, data);
+    }
+
+    public static <E> MessageBox<E> failMsg(String message) {
+        return new MessageBox<>(message, BOOLEAN_FAIL, null);
     }
 
     @Override

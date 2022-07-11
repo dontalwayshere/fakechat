@@ -1,6 +1,11 @@
 package com.fakechat.pracetice.service;
 
+import com.fakechat.pracetice.model.User;
+
 public interface UserService {
 
-    int save(String username, String pwd);
+
+    User login(String username, String pwd);
+
+    int register(String username, String pwd);
 }
