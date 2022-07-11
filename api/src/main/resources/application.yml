@@ -1,0 +1,22 @@
+server:
+  port: 83
+spring:
+  application:
+    name: fakechat-api
+  servlet:
+    # 文件上传限制
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  datasource:
+    #需要连接的本地数据库
+    url: jdbc:mysql://localhost:3306/fakechat?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false
+    #驱动
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root  #用户名
+    password: root  #密码
+minio:
+  endpoint: http://206.233.129.20:9000
+  accessKey: minio--admin
+  secretKey: minio--pasw
+  bucket: xzs

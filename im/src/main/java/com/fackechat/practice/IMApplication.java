@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Slf4j
 @SpringBootApplication
-public class ChatServerApplication {
+public class IMApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ChatServerApplication.class, args);
+        SpringApplication.run(IMApplication.class, args);
     }
 }

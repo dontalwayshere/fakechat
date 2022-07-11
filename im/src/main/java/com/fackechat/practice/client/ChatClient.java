@@ -24,8 +24,6 @@ public class ChatClient {
 
     public static void main(String[] args) {
 
-
-
         NioEventLoopGroup group = new NioEventLoopGroup();
         LoggingHandler LOGGING_HANDLER = new LoggingHandler(LogLevel.DEBUG);
         MessageCodecSharable MESSAGE_CODEC = new MessageCodecSharable();
