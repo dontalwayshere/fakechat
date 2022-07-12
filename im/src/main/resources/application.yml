@@ -3,14 +3,7 @@ server:
 spring:
   application:
     name: fakechat-im
-  servlet:
-    # 文件上传限制
-    multipart:
-      max-file-size: 100MB
-      max-request-size: 100MB
-minio:
-  endpoint: http://206.233.129.20:9000
-  accessKey: minio--admin
-  secretKey: minio--pasw
-  bucket: xzs
-
+logging:
+  level:
+    com.fakechat.practice: debug
+    io.netty.handler.logging.LoggingHandler: debug
