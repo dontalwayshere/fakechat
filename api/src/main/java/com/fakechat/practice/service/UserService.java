@@ -1,6 +1,5 @@
 package com.fakechat.practice.service;
 
-import com.fakechat.practice.common.msg.MessageBox;
 import com.fakechat.practice.model.Friend;
 import com.fakechat.practice.model.User;
 

@@ -88,6 +88,9 @@ public class MessageBox<T> extends Message {
     public static <E> MessageBox<E> failMsg(String message) {
         return new MessageBox<>(message, BOOLEAN_FAIL, null);
     }
+    public static <E> MessageBox<E> failMsg() {
+        return new MessageBox<>(MESSAGE_FAIL, BOOLEAN_FAIL, null);
+    }
 
     @Override
     public String toString() {

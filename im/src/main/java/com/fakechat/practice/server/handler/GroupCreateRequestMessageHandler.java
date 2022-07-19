@@ -34,4 +34,6 @@ public class GroupCreateRequestMessageHandler extends SimpleChannelInboundHandle
             ctx.writeAndFlush(new GroupCreateResponseMessage(false, groupName + "已经存在"));
         }
     }
+
+
 }

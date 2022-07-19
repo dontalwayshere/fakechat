@@ -27,14 +27,16 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public MessageBox<String> login(String username, String pwd) {
-        return userService.login(username, pwd) != null ? MessageBox.okMsg() : MessageBox.failMsg(ResponseConstant.RESP_LOGIN_ERROR);
+    public MessageBox<Integer> login(String username, String pwd) {
+        User user = userService.login(username, pwd);
+        return user != null ? MessageBox.ok(user.getId()) : MessageBox.failMsg(ResponseConstant.RESP_LOGIN_ERROR);
     }
 
     @PostMapping("/getFriendList")
     public MessageBox<List<Friend>> getFriendList(String uid,String username) {
         return MessageBox.ok(userService.getFriendList(uid,username));
     }
+
 
 
 
